@@ -1,0 +1,109 @@
+代码管理工具:
+	svn cvs 码云 TFS git 
+
+FTP:文件传输工具  传输速度快 支持断点续传
+	
+
+1、有一个统一的代码管理服务器 服务器拥有管理员权限
+2、每个用户拥有独立的账户 
+3、每个用户可以提交自己的代码到服务器端 服务器端可以查看所有用户提交的代码
+4、每个用户之间也可以互相查看代码 
+5、管理员可以给每个用户分配不同的权限
+6、A用户和B用户都想对index.html页面进行编辑 需要进行代码比对 
+7、A用户在修改一个页面的时候，可以先将页面进行签出锁定操作，签出的文件其他用户是无法进行更改的。当A用户的页面修改完毕之后，需要执行签入操作，其他用户就可以进行修改了。
+
+
+git 版本控制系统 
+
+管理员账号：
+	https://github.com/login
+	自行注册
+用户账号：
+	自行注册
+
+git仓库：  本地仓库 以及 远程仓库 
+
+Git基本常用命令如下：
+	git 查看是否安装成功
+	git --version 查看版本号
+	git config -l 查看当前的配置信息
+	git status 查看当前仓库的状态 、
+	git log 查看日志 
+	git log --pretty=oneline 格式化查看日志信息
+	git reset --hard HEAD^ 回退到上一版版本 (如果想回退到100个版本，使用git reset –hard HEAD~100 )
+	git reflog   查看历史记录的版本号id
+	cat XX         查看XX文件内容
+	git checkout -- XX  把XX文件在工作区的修改全部撤销。
+	git rm XX          删除XX文件
+	
+第一步、配置全局用户名：
+	【
+	git config --global user.name 'zhang123'
+	git config --global user.email'123@qq.com'
+】
+	 
+	 WQ || Ctrl + C 退出当前执行的dos请求 
+	
+
+
+第二步、创建本地临时仓库
+	进入到项目目录 执行 git init 
+	也可以在在文件夹中直接打开git bash here  ：把当前的目录变成可以管理的git仓库，生成隐藏.git文件。
+
+
+第三步、创建文件，将文件添加到临时仓库并提交
+	git add 文件名 将单个文件添加进管理仓库
+	git add *  添加所有文件
+	git commit -m'提交注释';
+	[add是添加  commit是提交   add之后必须执行commit操作 commot必须加注释 ]
+
+第四步、将本地仓库和远程仓库进行关联
+	在gitHub官网注册账户 并创建仓库【个人只能创建公开仓库】
+	git remote add origin git@github.com:booleanstr/happyNewYear.git
+
+
+第五步、把本地仓库的内容推送到gitHub仓库 
+	git push –u origin master 把当前master分支推送到远程库 (第一次要用-u 以后不需要)
+	【以后使用 git push origin master 命令进行推送】
+
+执行第五步如果遇到问题：
+  	1、在电脑c盘-用户-找到.ssh文件夹下 删除known_hosts文件 
+	
+	2、在控制台执行  $ ssh-keygen -t rsa -C "your@email.com" 
+
+	3、系统会自动在.ssh文件夹下生成两个文件，id_rsa和id_rsa.pub，用记事本打开id_rsa.pub 复制所有内容
+
+	4、在gitHub的个人设置中生成秘钥
+
+	5、生成秘钥之后重新执行 git push –u origin master
+	
+第六步、gitHub网站的项目操作
+	1、管理员登录远程仓库
+	2、用户登录
+	3、用户修改远程仓库中代码 创建新的更新  并将代码进行提交
+	4、管理员审核代码 允许本次修改
+	5、用户将远程仓库的代码克隆到本地
+		
+
+
+
+
+
+
+
+
+---------------------
+git checkout –b dev  创建dev分支 并切换到dev分支上
+git branch  查看当前所有的分支
+git checkout master 切换回master分支
+git merge dev    在当前的分支上合并dev分支
+git branch –d dev 删除dev分支
+git branch name  创建分支
+git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作
+git stash list 查看所有被隐藏的文件列表
+git stash apply 恢复被隐藏的文件，但是内容不删除
+git stash drop 删除文件
+git stash pop 恢复文件的同时 也删除文件
+git remote 查看远程库的信息
+git remote –v 查看远程库的详细信息
+git push origin master  Git会把master分支推送到远程库对应的远程分支上
